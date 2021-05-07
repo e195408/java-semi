@@ -1,1 +1,1 @@
-# java-semi
+# 楢崎なゆのjava-semi仕様書
