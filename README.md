@@ -96,7 +96,7 @@
 |名前|説明|制約|備考|
 |:---:|:---:|:---:|:---:|
 |id|カラム特定のためのID|auto_increment<br>primary key|-
-|comment|リプライ|not null|-
+|Reply|リプライ|not null|-
 |user_id|ユーザーID|nut null|外部キー
 |review_id|レビューID|not null|外部キー
 
