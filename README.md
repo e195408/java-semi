@@ -18,7 +18,7 @@
 |ユーザー名|半角20文字以内|null不可|
 |メールアドレス|半角255文字以内|null、重複不可|
 |パスワード|半角20文字以内|null不可|
-|秘密の質問|全角200文字以内|null不可|
+|秘密の質問|質問テーブルから選ぶ|null不可、外部キー|
 |質問の答え|全角100文字以内|null不可|
 
 #### 1.2. ログイン機能
@@ -111,16 +111,16 @@
 ### 2. データベース概要
 #### 2.1. Userテーブル
 
-|名前|説明|制約|
-|:---:|:---:|:---:|
-|id|カラム特定のためのID|auto_increment<br>primary key|
-|name|ユーザー名|not null|
-|mail|ユーザーのメールアドレス|not null<br>unique|
-|ps|パスワード|not null|
-|question|秘密の質問|not null|
-|answer|質問の答え|not null|
-|created_at|作成日時|not null|
-|update_at|更新日時|not null|
+|名前|説明|制約|備考
+|:---:|:---:|:---:|:---:|
+|id|カラム特定のためのID|auto_increment<br>primary key|-
+|name|ユーザー名|not null|-
+|mail|ユーザーのメールアドレス|not null<br>unique|-
+|ps|パスワード|not null|-
+|answer|質問の答え|not null|-
+|created_at|作成日時|not null|-
+|updated_at|更新日時|-|-
+|question_id|秘密の質問|not null|外部キー
 
 #### 2.2. Storeテーブル
 
@@ -130,7 +130,7 @@
 |name|店舗名|not null<br>unique|
 |details|店舗詳細|-|
 |created_at|作成日時|not null|
-|updated_at|更新日時|not null|
+|updated_at|更新日時|-|
 
 #### 2.3. Reviewテーブル
 
@@ -139,9 +139,9 @@
 |id|カラム特定のためのID|auto_increment<br>primary key|-
 |evaluation|評価|not null<br>int|-
 |comment|コメント|-|-
+|created_at|作成日時|not null|-|
 |user_id|ユーザーID|not null|外部キー|
 |store_id|店舗ID|not null|外部キー|
-|created_at|作成日時|not null|-|
 
 #### 2.4. Replyテーブル
 
@@ -149,9 +149,9 @@
 |:---:|:---:|:---:|:---:|
 |id|カラム特定のためのID|auto_increment<br>primary key|-
 |Reply|リプライ|not null|-
+|created_at|作成日時|not null|-
 |user_id|ユーザーID|nut null|外部キー
 |review_id|レビューID|not null|外部キー
-|created_at|作成日時|not null|-
 
 #### 2.5. UserとUserの中間テーブル(フォロー機能について)
 
@@ -160,5 +160,11 @@
 |id|カラム特定のためのID|auto_increment<br>primary key|-|
 |follow_user_id|フォローする側のユーザーID|not null|外部キー|
 |follower_user_id|フォローされる側のユーザーID|not null|外部キー|
-|created_at|作成日時|not null|-
+
+#### 2.6. 質問テーブル
+
+|名前|説明|制約|備考|
+|:---:|:---:|:---:|:---:|
+|id|カラム特定のためのID|auto_increment<br>primary key|-|
+|question|質問内容|not null|-
 
