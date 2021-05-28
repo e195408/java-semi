@@ -1,0 +1,55 @@
+@startuml
+
+class User {
+    int id
+    varchar user_name
+    varchar mail
+    varchar ps
+    varchar answer
+    datetime created_at
+    datetime updated_at
+
+    login()
+    register_store()
+    review()
+    reply()
+    follow()
+}
+
+class Store {
+    int id
+    varchar name
+    varchar details
+    datetime created_at
+    datetime updated_at
+}
+
+class Review {
+    int id
+    int evaluation
+    varchar comment
+    datetime created_at
+}
+
+class Reply {
+    int id
+    varchar reply
+    datetime created_at
+}
+
+class Follow {
+    int id
+}
+
+class Question {
+    int id
+    varchar question
+}
+
+User o-- Review
+Review o-- Reply
+Store o-- Review
+User *-- Question
+(User,User) .. Follow
+
+@enduml
