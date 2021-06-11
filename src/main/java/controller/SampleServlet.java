@@ -13,6 +13,19 @@ import java.io.PrintWriter;
 @WebServlet("/sample")
 public class SampleServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        リクエストパラメータの文字コードを指定
+        request.setCharacterEncoding("UTF-8");
+
+//        リクエストパラメータの取得
+        String name = request.getParameter("name");
+        String gender = request.getParameter("gender");
+
+        //リクエストスコープに保存
+        request.setAttribute("human",name + ":" +gender);
+
+        //フォワードでJSPに移動
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/sample/sample.jsp");
+        dispatcher.forward(request, response);
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        // Content-Type ヘッダの設定
