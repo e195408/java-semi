@@ -46,10 +46,10 @@ class Question {
     varchar question
 }
 
-User o-- Review
-Review o-- Reply
-Store o-- Review
-User *-- Question
+User"1" o-- "0..*"Review
+Review"1" o-- "0..*"Reply
+Store"1" o-- "0..*"Review
+User"1" *-- "1"Question
 (User,User) .. Follow
 
 @enduml
