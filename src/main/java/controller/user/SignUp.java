@@ -1,7 +1,6 @@
-package servlet.user;
+package controller.user;
 
-import beans.User;
-import control.UserManager;
+import model.user.User;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -24,8 +23,8 @@ public class SignUp extends HttpServlet {
         //requestオブジェクトから情報を取り出す
         String name = request.getParameter("name");
         String mail = request.getParameter("mail");
-        String pass = request.getParameter("pass");
-        Integer question = Integer.parseInt(request.getParameter("question"));
+        String ps = request.getParameter("pass");
+        Integer questionId = Integer.parseInt(request.getParameter("question"));
         String answer = request.getParameter("answer");
 
 //        System.out.println("取得した文字列は"+ name + "です！");
@@ -35,19 +34,18 @@ public class SignUp extends HttpServlet {
 //        System.out.println("取得した文字列は"+ answer +"です！");
 
         //Userインスタンスの生成
-        User user =new User(
+        User user = new User(
+                null,
                 name,
                 mail,
-                pass,
-                question,
-                answer
+                ps,
+                questionId,
+                answer,
+                null,
+                null
         );
 
-        //UserManagerオブジェクトを生成
-        UserManager manager = new UserManager();
-
-        //登録
-        manager.signUpUser(user);
+        user.registUser();
 
         //成功したらsampleTest.javaにGETリクエストを送る
         response.sendRedirect("/test");
