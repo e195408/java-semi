@@ -7,14 +7,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Client {
+	// データベースの接続先アドレスを静的変数として記述
 	private final static String HOST_NAME = "db";
-	private final static String DATABASE_NAME = "sample";
+	private final static String DATABASE_NAME = "java_semi";
 	private final static String USER_NAME = "root";
 	private final static String PASSWORD = "root";
 	private final static String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
 	private final static String DRIVER_URL = "jdbc:mysql://" + HOST_NAME + ":3306/" + DATABASE_NAME + "?useUnicode=true&characterEncoding=utf-8";
 
-	public static Connection createConnection() {
+	public static Connection create() {
 		try {
 			Class.forName(DRIVER_NAME);
 			Connection connection = DriverManager.getConnection(DRIVER_URL, USER_NAME, PASSWORD);
