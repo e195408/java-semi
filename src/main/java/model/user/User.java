@@ -9,6 +9,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 
 public class User extends Default {
+    public final static String currentUserKey = "currentUser";
     
     //属性
     private String name;
@@ -23,11 +24,11 @@ public class User extends Default {
             String name,
             String mail,
             String ps,
-            Integer questionId,
             String answer,
             Timestamp createdAt,
-            Timestamp updatedAt
-    ){
+            Timestamp updatedAt,
+            Integer questionId
+            ){
         super(id, createdAt, updatedAt);
         //親クラスのインスタンスを呼び出す
         this.name = name;
@@ -56,23 +57,25 @@ public class User extends Default {
         this.hashPassword();
         UserDAO.registUser(this);
     }
+
     //User認証の機構
-//    public boolean authenticateUser(HttpServletRequest request) {
-//        //Mailをもとにユーザーが存在するか調べる
-//        User persistedUser = UserDAO.selectUserByMail(this.mail);
-//        if (persistedUser == null) {    //Mailをもつユーザーがいなければ
-//            return false;
-//        }
-//        //ここからはMailをもつユーザーがいればの話
-//        this.hashPassword();    //入力されたパスワードをハッシュ化
-//        if (this.ps.equals(persistedUser.ps)) { //ハッシュ化したものとDBのパスワードが一致すれば
-//            HttpSession session = request.getSession(); //セッションを作って
-//            session.setAttribute(currentUserKey, persistedUser);    //セッションスコープにユーザー情報保存
-//            return true;
-//        } else {    //パスワードが違ったらfalseを返す
-//            return false;
-//        }
-//    }
+    public boolean authenticateUser(HttpServletRequest request) {
+        //Mailをもとにユーザーが存在するか調べる
+        User persistedUser = UserDAO.selectUserByMail(this.mail);
+        if (persistedUser == null) {    //Mailをもつユーザーがいなければ
+            return false;
+        }
+        //ここからはMailをもつユーザーがいればの話
+        this.hashPassword();    //入力されたパスワードをハッシュ化
+        if (this.ps.equals(persistedUser.ps)) { //ハッシュ化したものとDBのパスワードが一致すれば
+            HttpSession session = request.getSession(); //セッションを作って
+            session.setAttribute(currentUserKey, persistedUser);    //セッションスコープにユーザー情報保存
+            return true;
+        } else {    //パスワードが違ったらfalseを返す
+            return false;
+        }
+    }
+
     //ハッシュ化
     public void hashPassword(){
         this.ps=getHash(this.mail,this.ps);
@@ -103,6 +106,7 @@ public class User extends Default {
         }
         return stringBuffer.toString();
     }
+
 //    public static User getCurrentUser(HttpServletRequest request) {
 //        HttpSession session = request.getSession();
 //        return (User) session.getAttribute(currentUserKey);

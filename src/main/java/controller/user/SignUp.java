@@ -23,13 +23,13 @@ public class SignUp extends HttpServlet {
         //requestオブジェクトから情報を取り出す
         String name = request.getParameter("name");
         String mail = request.getParameter("mail");
-        String ps = request.getParameter("pass");
+        String ps = request.getParameter("ps");
         Integer questionId = Integer.parseInt(request.getParameter("question"));
         String answer = request.getParameter("answer");
 
 //        System.out.println("取得した文字列は"+ name + "です！");
 //        System.out.println("取得した文字列は"+ mail + "です！");
-//        System.out.println("取得した文字列は"+ pass + "です！");
+//        System.out.println("取得した文字列は"+ ps + "です！");
 //        System.out.println("取得した文字列は"+ question + "です！");
 //        System.out.println("取得した文字列は"+ answer +"です！");
 
@@ -39,10 +39,10 @@ public class SignUp extends HttpServlet {
                 name,
                 mail,
                 ps,
-                questionId,
                 answer,
                 null,
-                null
+                null,
+                questionId
         );
 
         user.registUser();

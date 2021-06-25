@@ -17,7 +17,7 @@
         </tr>
         <tr>
             <td>パスワード</td>
-            <td><input type="password" name="pass" maxlength="20" required></td>
+            <td><input type="password" name="ps" maxlength="20" required></td>
         </tr>
         <tr>
             <td>秘密の質問</td>
