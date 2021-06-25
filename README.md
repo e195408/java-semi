@@ -17,7 +17,7 @@
 |:---:|:---:|:---:|
 |ユーザー名|半角20文字以内|null不可|
 |メールアドレス|半角255文字以内|null、重複不可|
-|パスワード|半角20文字以内|null不可|
+|パスワード|半角6文字以上20文字以内|null不可|
 |秘密の質問|質問テーブルから選ぶ|null不可、外部キー|
 |質問の答え|全角100文字以内|null不可|
 
@@ -114,12 +114,12 @@
 |名前|説明|制約|備考
 |:---:|:---:|:---:|:---:|
 |id|カラム特定のためのID|auto_increment<br>primary key|-
-|name|ユーザー名|not null|-
-|mail|ユーザーのメールアドレス|not null<br>unique|-
-|ps|パスワード|not null|-
-|answer|質問の答え|not null|-
-|created_at|作成日時|not null|-
-|updated_at|更新日時|-|-
+|name|ユーザー名|not null<br>varchar 20|-
+|mail|ユーザーのメールアドレス|not null<br>unique<br>varchar255|-
+|ps|パスワード|not null<br>varchar 20|-
+|answer|質問の答え|not null<br>varchar 100|-
+|created_at|作成日時|not null<br>date|-
+|updated_at|更新日時|date|-
 |question_id|秘密の質問|not null|外部キー
 
 #### 2.2. Storeテーブル
@@ -127,19 +127,19 @@
 |名前|説明|制約|
 |:---:|:---:|:---:|
 |id|カラム特定のためのID|auto_increment<br>primary key|
-|name|店舗名|not null<br>unique|
-|details|店舗詳細|-|
-|created_at|作成日時|not null|
-|updated_at|更新日時|-|
+|name|店舗名|not null<br>unique<br>varchar 20|
+|details|店舗詳細|varchar 200|
+|created_at|作成日時|not null<br>date|
+|updated_at|更新日時|date|
 
 #### 2.3. Reviewテーブル
 
 |名前|説明|制約|備考|
 |:---:|:---:|:---:|:---:|
 |id|カラム特定のためのID|auto_increment<br>primary key|-
-|evaluation|評価|not null<br>int|-
-|comment|コメント|-|-
-|created_at|作成日時|not null|-|
+|evaluation|評価|not null<br>int 5|-
+|comment|コメント|barchar 200|-
+|created_at|作成日時|not null<br>date|-|
 |user_id|ユーザーID|not null|外部キー|
 |store_id|店舗ID|not null|外部キー|
 
@@ -148,8 +148,8 @@
 |名前|説明|制約|備考|
 |:---:|:---:|:---:|:---:|
 |id|カラム特定のためのID|auto_increment<br>primary key|-
-|Reply|リプライ|not null|-
-|created_at|作成日時|not null|-
+|Reply|リプライ|not null<br>varchar 200|-
+|created_at|作成日時|not null<br>date|-
 |user_id|ユーザーID|nut null|外部キー
 |review_id|レビューID|not null|外部キー
 
@@ -166,5 +166,5 @@
 |名前|説明|制約|備考|
 |:---:|:---:|:---:|:---:|
 |id|カラム特定のためのID|auto_increment<br>primary key|-|
-|question|質問内容|not null|-
+|content|質問内容|not null<br>varchar 64|-
 
