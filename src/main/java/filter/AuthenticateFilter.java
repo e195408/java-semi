@@ -36,7 +36,7 @@ public class AuthenticateFilter implements Filter {
         }
 
         // 新規登録画面にアクセスしたとき
-        else if (servletPath.equals("/user/signup")) {
+        else if (servletPath.equals("/User/SignUp")) {
             if (currentUser == null) {
                 chain.doFilter(req, resp);
             } else {
