@@ -109,7 +109,7 @@
 フォローしているユーザー詳細画面の「フォローを外す」を押すとフォローが解除される。
 
 ### 2. データベース概要
-#### 2.1. Userテーブル
+#### 2.1. Userテーブル(users)
 
 |名前|説明|制約|備考
 |:---:|:---:|:---:|:---:|
@@ -119,10 +119,10 @@
 |ps|パスワード|not null<br>varchar 20|-
 |answer|質問の答え|not null<br>varchar 100|-
 |created_at|作成日時|not null<br>date|-
-|updated_at|更新日時|date|-
+|updated_at|更新日時|not null<br>date|-
 |question_id|秘密の質問|not null|外部キー
 
-#### 2.2. Storeテーブル
+#### 2.2. Storeテーブル(stores)
 
 |名前|説明|制約|
 |:---:|:---:|:---:|
@@ -130,9 +130,9 @@
 |name|店舗名|not null<br>unique<br>varchar 20|
 |details|店舗詳細|varchar 200|
 |created_at|作成日時|not null<br>date|
-|updated_at|更新日時|date|
+|updated_at|更新日時|not null<br>date|
 
-#### 2.3. Reviewテーブル
+#### 2.3. Reviewテーブル(review)
 
 |名前|説明|制約|備考|
 |:---:|:---:|:---:|:---:|
@@ -143,17 +143,17 @@
 |user_id|ユーザーID|not null|外部キー|
 |store_id|店舗ID|not null|外部キー|
 
-#### 2.4. Replyテーブル
+#### 2.4. Replyテーブル(reply)
 
 |名前|説明|制約|備考|
 |:---:|:---:|:---:|:---:|
 |id|カラム特定のためのID|auto_increment<br>primary key|-
-|Reply|リプライ|not null<br>varchar 200|-
+|comment|リプライ|not null<br>varchar 200|-
 |created_at|作成日時|not null<br>date|-
 |user_id|ユーザーID|nut null|外部キー
 |review_id|レビューID|not null|外部キー
 
-#### 2.5. UserとUserの中間テーブル(フォロー機能について)
+#### 2.5. UserとUserの中間テーブル(フォロー機能について)(follow)
 
 |名前|説明|制約|備考|
 |:---:|:---:|:---:|:---:|
@@ -161,7 +161,7 @@
 |follow_user_id|フォローする側のユーザーID|not null|外部キー|
 |follower_user_id|フォローされる側のユーザーID|not null|外部キー|
 
-#### 2.6. 質問テーブル
+#### 2.6. 質問テーブル(questions)
 
 |名前|説明|制約|備考|
 |:---:|:---:|:---:|:---:|
