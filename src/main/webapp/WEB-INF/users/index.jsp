@@ -14,5 +14,6 @@
 <body>
     <p>ログイン成功</p>
     <p>あなたの名前は${currentUser.getName()}</p>
+<%@ include file="../common/footer.jsp"%>
 </body>
 </html>
