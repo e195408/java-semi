@@ -23,10 +23,10 @@
             <td>秘密の質問</td>
             <td>
                 <select name="question">
-                    <option value="0">出身地は？</option>
-                    <option value="1">飼っていたペットの名前は？</option>
-                    <option value="2">母親の旧姓は？</option>
-                    <option value="3">兄弟姉妹の名前は？</option>
+                    <option value="1">出身地は？</option>
+                    <option value="2">飼っていたペットの名前は？</option>
+                    <option value="3">母親の旧姓は？</option>
+                    <option value="4">兄弟姉妹の名前は？</option>
                 </select>
                 →質問の答え
                 <input type="answer" name="answer" required />
